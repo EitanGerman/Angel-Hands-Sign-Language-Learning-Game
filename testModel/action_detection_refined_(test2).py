@@ -17,11 +17,17 @@ import os
 from matplotlib import pyplot as plt
 import time
 import mediapipe as mp
+from sklearn.model_selection import train_test_split
+# from tensorflow.keras.utils import to_categorical
+from keras.utils import to_categorical
+from keras.models import Sequential
+from keras.layers import LSTM, Dense
+from keras.callbacks import TensorBoard
 
 """# 2. Keypoints using MP Holistic"""
 
-mp_holistic = mp.solutions.holistic # Holistic model
-mp_drawing = mp.solutions.drawing_utils # Drawing utilities
+mp_holistic = mp.solutions.holistic  # Holistic model
+mp_drawing = mp.solutions.drawing_utils  # Drawing utilities
 
 def mediapipe_detection(image, model):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
@@ -154,16 +160,17 @@ for action in actions:
 """# 5. Collect Keypoint Values for Training and Testing"""
 
 user_input = input("Recaptture video y/n? ")
-if(user_input == 'y'):
+
+
+def Capture_Video():
     cap = cv2.VideoCapture(0)
     # Set mediapipe model
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
 
-        # NEW LOOP
         # Loop through actions
         for action in actions:
             # Loop through sequences aka videos
-            for sequence in range(start_folder, start_folder+no_sequences):
+            for sequence in range(start_folder, start_folder + no_sequences):
                 # Loop through video length aka sequence length
                 for frame_num in range(sequence_length):
 
@@ -178,16 +185,18 @@ if(user_input == 'y'):
 
                     # NEW Apply wait logic
                     if frame_num == 0:
-                        cv2.putText(image, 'STARTING COLLECTION', (120,200),
-                                   cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255, 0), 4, cv2.LINE_AA)
-                        cv2.putText(image, 'Collecting frames for {} Video Number {}'.format(action, sequence), (15,12),
-                                   cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
+                        cv2.putText(image, 'STARTING COLLECTION', (120, 200),
+                                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 4, cv2.LINE_AA)
+                        cv2.putText(image, 'Collecting frames for {} Video Number {}'.format(action, sequence),
+                                    (15, 12),
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
                         # Show to screen
                         cv2.imshow('OpenCV Feed', image)
                         cv2.waitKey(500)
                     else:
-                        cv2.putText(image, 'Collecting frames for {} Video Number {}'.format(action, sequence), (15,12),
-                                   cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
+                        cv2.putText(image, 'Collecting frames for {} Video Number {}'.format(action, sequence),
+                                    (15, 12),
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
                         # Show to screen
                         cv2.imshow('OpenCV Feed', image)
 
@@ -206,14 +215,12 @@ if(user_input == 'y'):
     cap.release()
     cv2.destroyAllWindows()
 
-"""# 6. Preprocess Data and Create Labels and Features"""
 
-from sklearn.model_selection import train_test_split
-# from tensorflow.keras.utils import to_categorical
-from keras.utils import to_categorical
-from keras.models import Sequential
-from keras.layers import LSTM, Dense
-from keras.callbacks import TensorBoard
+if(user_input == 'y'):
+    Capture_Video()
+
+
+"""# 6. Preprocess Data and Create Labels and Features"""
 
 retrain_model = input("Retrain model y/n? ")
 if retrain_model == 'y':
@@ -232,7 +239,6 @@ if retrain_model == 'y':
             labels.append(label_map[action])
 
     np.array(sequences).shape
-
     np.array(labels).shape
 
     X = np.array(sequences)
@@ -241,7 +247,7 @@ if retrain_model == 'y':
 
     y = to_categorical(labels).astype(int)
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05)#test_size=0.05
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05)  # test_size=0.05
 
     y_test.shape
 

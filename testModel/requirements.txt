@@ -1,0 +1,12 @@
+tensorflow~=2.16.1
+gast~=0.5.4
+astunparse~=1.6.3
+termcolor~=2.4.0
+numpy~=1.26.4
+opencv-python~=4.9.0.80
+pillow~=10.3.0
+keras~=3.2.1
+mediapipe~=0.10.11
+matplotlib~=3.8.4
+scikit-learn~=1.4.2
+scipy~=1.13.0

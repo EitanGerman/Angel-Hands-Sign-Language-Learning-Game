@@ -126,7 +126,7 @@ def run_model():
             sequence.append(keypoints)
             sequence = sequence[-30:]
 
-            showVideo = False
+            showVideo = True
 
             if len(sequence) == 30:
                 res = model.predict(np.expand_dims(sequence, axis=0))[0]
