@@ -19,7 +19,7 @@ class ActionRecognition:
         # self.model = self._build_model()
         # self.model.load_weights('action.keras')
 
-        self.colors = [(245, 117, 16), (117, 245, 16), (16, 117, 245), (150, 23, 245)]
+        self.colors = [(245, 117, 16), (117, 245, 16), (16, 117, 245), (150, 23, 245), (150, 23, 0)]
         self.threshold = 0.5
 
     def load_model(self, model_path, folders):

@@ -51,9 +51,24 @@ class ModelTrainer(tk.Frame):
         list_frame = tk.Frame(main_frame)
         list_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
+        # Create Epochs entry
+        self.Epochs_label = tk.Label(list_frame, text="Epochs:")
+        self.Epochs_label.pack(pady=5)
+        self.Epochs_entry = tk.Entry(list_frame)
+        self.Epochs_entry.insert(0, '2000')
+        self.Epochs_entry.pack(pady=5)
+
+        # Create Train Test split entry
+        self.Train_Test_split_label = tk.Label(list_frame, text="Train test split:")
+        self.Train_Test_split_label.pack(pady=5)
+        self.Train_Test_split_entry = tk.Entry(list_frame)
+        self.Train_Test_split_entry.insert(0, '0.05')
+        self.Train_Test_split_entry.pack(pady=5)
+
         tk.Label(list_frame, text="Folders to Train On:").pack(anchor="w")
         self.folder_listbox = tk.Listbox(list_frame, height=20)
         self.folder_listbox.pack(fill=tk.BOTH, expand=True, pady=5)
+
         # Create refresh button
         self.refresh_button = tk.Button(list_frame, text="Refresh List", command=self.update_folder_list)
         self.refresh_button.pack(pady=10)
@@ -121,7 +136,7 @@ class ModelTrainer(tk.Frame):
         X = np.array(sequences)
         y = to_categorical(labels).astype(int)
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=float(self.Train_Test_split_entry.get().strip()))
 
         log_dir = os.path.join('Logs')
         tb_callback = TensorBoard(log_dir=log_dir)
@@ -138,7 +153,7 @@ class ModelTrainer(tk.Frame):
         model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
 
         self.log("Training the model...")
-        model.fit(X_train, y_train, epochs=2000, callbacks=[tb_callback, log_callback])
+        model.fit(X_train, y_train, epochs=int(self.Epochs_entry.get().strip()), callbacks=[tb_callback, log_callback])
 
         self.log("Training complete. Evaluating the model...")
         res = model.predict(X_test)

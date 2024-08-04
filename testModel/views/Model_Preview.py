@@ -36,6 +36,10 @@ class ModelPreview:
         self.preview_button = tk.Button(self.control_frame, text="Start Preview", command=self.toggle_preview)
         self.preview_button.pack(fill='x', pady=5, padx=10)
 
+        # Create refresh button
+        self.refresh_button = tk.Button(self.control_frame, text="Refresh List", command=self.load_model_folders)
+        self.refresh_button.pack(pady=10)
+
         self.cap = None
 
         self.action_recognition = ActionRecognition()
