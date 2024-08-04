@@ -1,10 +1,12 @@
 import cv2
 import mediapipe as mp
 import numpy as np
+from keras import Input
 import server as srvr
 from keras.models import Sequential
 from keras.layers import LSTM, Dense
 import os
+
 
 class ActionRecognition:
     def __init__(self):
@@ -24,13 +26,14 @@ class ActionRecognition:
 
     def load_model(self, model_path, folders):
         self.actions = np.array(folders)
-        print('actions:' +str(len(self.actions)))
+        print('actions:' + str(len(self.actions)))
         self.model = self._build_model()
         self.model.load_weights(model_path)
 
     def _build_model(self):
         model = Sequential()
-        model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(30, 554*3)))  #i662
+        model.add(Input(shape=(30, 554*3)))
+        model.add(LSTM(64, return_sequences=True, activation='relu'))  # input_shape=(30, 554*3)
         model.add(LSTM(128, return_sequences=True, activation='relu'))
         model.add(LSTM(64, return_sequences=False, activation='relu'))
         model.add(Dense(64, activation='relu'))
