@@ -13,10 +13,11 @@ from keras.callbacks import TensorBoard, Callback
 import threading
 
 # Define constants
-#actions = np.array(['hello', 'thanks', 'iloveyou'])
 DATA_PATH = 'MP_Data'
 no_sequences = 30
 sequence_length = 30
+Num_Epochs = 300
+Train_Test_split = 0.1
 
 mp_holistic = mp.solutions.holistic
 
@@ -55,14 +56,14 @@ class ModelTrainer(tk.Frame):
         self.Epochs_label = tk.Label(list_frame, text="Epochs:")
         self.Epochs_label.pack(pady=5)
         self.Epochs_entry = tk.Entry(list_frame)
-        self.Epochs_entry.insert(0, '2000')
+        self.Epochs_entry.insert(0, str(Num_Epochs))
         self.Epochs_entry.pack(pady=5)
 
         # Create Train Test split entry
         self.Train_Test_split_label = tk.Label(list_frame, text="Train test split:")
         self.Train_Test_split_label.pack(pady=5)
         self.Train_Test_split_entry = tk.Entry(list_frame)
-        self.Train_Test_split_entry.insert(0, '0.05')
+        self.Train_Test_split_entry.insert(0, str(Train_Test_split))
         self.Train_Test_split_entry.pack(pady=5)
 
         tk.Label(list_frame, text="Folders to Train On:").pack(anchor="w")
