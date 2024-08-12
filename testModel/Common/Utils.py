@@ -47,9 +47,9 @@ def draw_styled_landmarks(image, results):
                               )
 
 
-def extract_keypoints(results):
+def extract_keypoints(results,use_faceLandmarks = True):
     pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten() if results.pose_landmarks else np.zeros(33 * 4)
-    face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468 * 3)
+    face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks and use_faceLandmarks else np.zeros(468 * 3)
     lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21 * 3)
     rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21 * 3)
     return np.concatenate([pose, face, lh, rh])
@@ -88,6 +88,19 @@ def view_NP_Array():
                 print(array)
     except Exception as e:
         print(f"Error loading or printing NumPy array: {e}")
+
+
+class TextRedirector:
+    def __init__(self, widget, log_function):
+        self.widget = widget
+        self.log_function = log_function
+
+    def write(self, message):
+        self.log_function(message)
+
+    def flush(self):
+        pass
+
 
 if __name__ == "__main__":
     view_NP_Array()

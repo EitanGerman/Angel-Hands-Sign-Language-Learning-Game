@@ -4,7 +4,7 @@ from views.Model_Preview import ModelPreview
 from views.Model_Trainer import ModelTrainer
 from views.folder_manager import FolderManager
 from views.Capture_Video_From_Camera import FolderFiller
-
+from views.Capture_Sign_From_youtube_View import YouTubeCaptureView
 
 class App:
     def __init__(self, root):
@@ -25,6 +25,11 @@ class App:
         self.folder_manager_tab = tk.Frame(self.notebook)
         self.notebook.add(self.folder_manager_tab, text="Capture Sign")
         self.folder_filler = FolderFiller(self.folder_manager_tab)
+
+        # Tab 4 - Capture Sign From YouTube
+        self.youtube_capture_tab = tk.Frame(self.notebook)
+        self.notebook.add(self.youtube_capture_tab, text="Capture Sign From YouTube")
+        self.youtube_capture = YouTubeCaptureView(self.youtube_capture_tab)
 
         # Tab 4 - Model Trainer
         self.model_trainer_tab = tk.Frame(self.notebook)
