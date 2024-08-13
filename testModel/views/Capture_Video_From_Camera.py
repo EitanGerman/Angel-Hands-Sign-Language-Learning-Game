@@ -51,6 +51,7 @@ class FolderFiller(tk.Frame):
     def start_capture(self):
         selected_folder = self.folder_combobox.get()
         folder_path = os.path.join(DATA_PATH, selected_folder)
+        os.makedirs(folder_path, exist_ok=True)
 
         if not selected_folder:
             messagebox.showwarning("Warning", "Please select a folder.")
