@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 import numpy as np
 from keras import Input
-import server as srvr
+from Common import server
 from keras.models import Sequential
 from keras.layers import LSTM, Dense
 import Common.Utils as Utils
@@ -14,7 +14,6 @@ class ActionRecognition:
         # Initialize MediaPipe and Keras model
         self.mp_holistic = mp.solutions.holistic
         self.mp_drawing = mp.solutions.drawing_utils
-        self.server = srvr.Server()
 
         self.actions = None
         self.model = None
@@ -22,14 +21,15 @@ class ActionRecognition:
         self.colors = [(245, 117, 16), (117, 245, 16), (16, 117, 245), (150, 23, 245), (150, 23, 0)]
         self.threshold = 0.5
 
-    def load_model(self, model_path, folders):
-        self.actions = np.array(folders)
+    def load_model(self, model_path):
+        self.actions = Utils.get_action_array_from_file(model_path)
         print('actions:' + str(len(self.actions)))
         self.colors = Utils.generate_random_colors(len(self.actions))
-        self.model = self._build_model()
-        self.model.load_weights(model_path)
+        self.model = self.build_model(self.actions.shape[0])
+        self.model.load_weights(os.path.join(model_path,'actions.keras'))
 
-    def _build_model(self):
+    @staticmethod
+    def build_model(shape):
         model = Sequential()
         model.add(Input(shape=(30, 554*3)))
         model.add(LSTM(64, return_sequences=True, activation='relu'))  # input_shape=(30, 554*3)
@@ -37,22 +37,24 @@ class ActionRecognition:
         model.add(LSTM(64, return_sequences=False, activation='relu'))
         model.add(Dense(64, activation='relu'))
         model.add(Dense(32, activation='relu'))
-        model.add(Dense(self.actions.shape[0], activation='softmax'))
+        model.add(Dense(shape, activation='softmax'))
         model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
         return model
 
-    def start_server(self):
-        self.server.start()
+    def start_server(self,port=None):
+        self.srvr = server.Server(port)
+        self.srvr.start()
 
-    def run_model(self):
+    def run_model(self, show_video=True,port=None):
         currentAction = ""
         previousAction = ""
-        self.start_server()
+        self.start_server(port)
         sequence = []
         sentence = []
         predictions = []
 
-        cap = cv2.VideoCapture(0)
+        cap = Utils.open_16_9_video_capture()
+
         with self.mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
             while cap.isOpened():
                 ret, frame = cap.read()
@@ -62,18 +64,16 @@ class ActionRecognition:
                 sequence.append(keypoints)
                 sequence = sequence[-30:]
 
-                showVideo = True
-
                 if len(sequence) == 30:
                     res = self.model.predict(np.expand_dims(sequence, axis=0))[0]
                     print(self.actions[np.argmax(res)])
                     currentAction = self.actions[np.argmax(res)]
                     if previousAction != currentAction:
                         previousAction = currentAction
-                        self.server.broadcast_variable(previousAction)
+                        self.srvr.broadcast_variable(previousAction)
                     predictions.append(np.argmax(res))
 
-                    if showVideo:
+                    if show_video:
                         if np.unique(predictions[-10:])[0] == np.argmax(res):
                             if res[np.argmax(res)] > self.threshold:
                                 if len(sentence) > 0:
@@ -87,7 +87,7 @@ class ActionRecognition:
 
                         image = Utils.prob_viz(res, self.actions, image, self.colors)
 
-                if showVideo:
+                if show_video:
                     cv2.rectangle(image, (0, 0), (640, 40), (245, 117, 16), -1)
                     cv2.putText(image, ' '.join(sentence), (3, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2,
                                 cv2.LINE_AA)
@@ -97,6 +97,7 @@ class ActionRecognition:
                         break
             cap.release()
             cv2.destroyAllWindows()
+            self.srvr.stop()
 
 
 # To run the model

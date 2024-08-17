@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, filedialog, messagebox
+from tkinter import ttk, messagebox
 from Common import Capture_From_youTube_List as capYT
 import json
 
@@ -43,7 +43,6 @@ class YouTubeCaptureView(tk.Frame):
         self.sign_combobox = ttk.Combobox(control_frame, values=list(self.sign_data.keys()))
         self.sign_combobox.pack(fill=tk.X, pady=5)
         self.sign_combobox.bind("<<ComboboxSelected>>", self.on_sign_selected)
-
 
         self.preview = tk.Checkbutton(control_frame, text="Preview Capture")
         self.preview.pack(fill=tk.X, pady=5)
@@ -97,10 +96,12 @@ class YouTubeCaptureView(tk.Frame):
         except ValueError as ve:
             self.log(str(ve))
 
-    def load_grouped_data(self):
+    @staticmethod
+    def load_grouped_data():
         try:
-            with open("Common/grouped_ms_asl_dataset.json", "r") as file:
+            with open("Common/SourceData/grouped_ms_asl_dataset.json", "r") as file:
                 return json.load(file)
         except Exception as e:
             messagebox.showinfo("Error", f"Error loading grouped data: {e}")
             return {}
+

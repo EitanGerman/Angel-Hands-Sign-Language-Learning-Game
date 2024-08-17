@@ -1,7 +1,7 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-import server as srvr
+from Common import server as srvr
 
 """# 2. Keypoints using MP Holistic"""
 mp_holistic = mp.solutions.holistic         # Holistic model

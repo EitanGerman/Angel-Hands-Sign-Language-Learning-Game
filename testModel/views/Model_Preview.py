@@ -3,8 +3,7 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 import cv2
 from PIL import Image, ImageTk
-from action_detection_refined_Runner_View import ActionRecognition
-from datetime import datetime
+from Common.Action_recognition import ActionRecognition
 
 
 class ModelPreview:
@@ -32,9 +31,6 @@ class ModelPreview:
 
         self.model_button = tk.Button(self.control_frame, text="Start Model", command=self.toggle_model)
         self.model_button.pack(fill='x', pady=5, padx=10)
-
-        self.preview_button = tk.Button(self.control_frame, text="Start Preview", command=self.toggle_preview)
-        self.preview_button.pack(fill='x', pady=5, padx=10)
 
         # Create refresh button
         self.refresh_button = tk.Button(self.control_frame, text="Refresh List", command=self.load_model_folders)
@@ -78,13 +74,13 @@ class ModelPreview:
 
     def on_model_folder_change(self, *args):
         selected_folder = self.model_folder_var.get()
-        model_path = os.path.join('Models', selected_folder, 'actions.keras')
+        model_path = os.path.join('Models', selected_folder)
         folders_file = os.path.join('Models', selected_folder, 'selected_folders.txt')
         self.labels_listbox.delete(0, tk.END)
         if os.path.exists(model_path) and os.path.exists(folders_file):
             with open(folders_file, 'r') as f:
                 folders = f.read().splitlines()
-                self.action_recognition.load_model(model_path, folders)
+                self.action_recognition.load_model(model_path)
                 for folder in folders:
                     self.labels_listbox.insert(tk.END, folder)
             messagebox.showinfo("Model Loaded", f"Model and folders loaded from {selected_folder}")
@@ -110,7 +106,6 @@ class ModelPreview:
             self.cap = None
         self.video_label.config(image='')
         self.model_button.config(text="Start Model")
-        self.preview_button.config(text="Start Preview")
 
     def toggle_preview(self):
         if self.show_video:
@@ -120,11 +115,9 @@ class ModelPreview:
 
     def start_preview(self):
         self.show_video = True
-        self.preview_button.config(text="Stop Video")
 
     def stop_preview(self):
         self.show_video = False
-        self.preview_button.config(text="Start Preview")
 
     def update_video_stream(self):
         if self.model_running and self.cap and self.cap.isOpened():

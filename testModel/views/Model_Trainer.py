@@ -3,14 +3,12 @@ from tkinter import messagebox
 from datetime import datetime
 import os
 import numpy as np
-import mediapipe as mp
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import multilabel_confusion_matrix, accuracy_score
 from keras.utils import to_categorical
-from keras.models import Sequential
-from keras.layers import LSTM, Dense
 from keras.callbacks import TensorBoard, Callback
 import threading
+from Common import Action_recognition
 
 # Define constants
 DATA_PATH = 'MP_Data'
@@ -18,8 +16,6 @@ no_sequences = 30
 sequence_length = 30
 Num_Epochs = 300
 Train_Test_split = 0.1
-
-mp_holistic = mp.solutions.holistic
 
 
 class TextRedirector(Callback):
@@ -78,8 +74,8 @@ class ModelTrainer(tk.Frame):
         control_frame = tk.Frame(main_frame)
         control_frame.pack(side=tk.RIGHT, fill=tk.Y, padx=10)
 
-        train_button = tk.Button(control_frame, text="Run Training", command=self.run_training_thread)
-        train_button.pack(fill=tk.X, pady=5)
+        self.train_button = tk.Button(control_frame, text="Run Training", command=self.run_training_thread)
+        self.train_button.pack(fill=tk.X, pady=5)
 
         self.log_text = tk.Text(control_frame, height=20, state='disabled')
         self.log_text.pack(fill=tk.BOTH, expand=True, pady=5)
@@ -89,6 +85,7 @@ class ModelTrainer(tk.Frame):
         self.log_text.see(tk.END)
 
     def run_training_thread(self):
+        self.train_button.config(state=tk.DISABLED)
         threading.Thread(target=self.run_training).start()
 
     def update_folder_list(self):
@@ -143,15 +140,7 @@ class ModelTrainer(tk.Frame):
         tb_callback = TensorBoard(log_dir=log_dir)
         log_callback = TextRedirector(self.log_text)
 
-        model = Sequential()
-        model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(30, 554*3)))
-        model.add(LSTM(128, return_sequences=True, activation='relu'))
-        model.add(LSTM(64, return_sequences=False, activation='relu'))
-        model.add(Dense(64, activation='relu'))
-        model.add(Dense(32, activation='relu'))
-        model.add(Dense(len(selected_folders), activation='softmax'))
-
-        model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
+        model = Action_recognition.ActionRecognition.build_model(len(selected_folders))
 
         self.log("Training the model...")
         model.fit(X_train, y_train, epochs=int(self.Epochs_entry.get().strip()), callbacks=[tb_callback, log_callback])
@@ -171,4 +160,6 @@ class ModelTrainer(tk.Frame):
                 f.write(folder + '\n')
 
         self.log("Model saved successfully.")
+
+        self.train_button.config(state=tk.NORMAL)
 

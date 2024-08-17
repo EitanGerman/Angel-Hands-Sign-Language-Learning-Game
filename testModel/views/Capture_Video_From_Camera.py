@@ -4,7 +4,7 @@ import cv2
 import mediapipe as mp
 import os
 import numpy as np
-import Common.Utils as utils
+import Common.Utils as Utils
 
 # Define constants
 actions = np.array(['hello', 'thanks', 'iloveyou'])
@@ -90,10 +90,10 @@ class FolderFiller(tk.Frame):
                     ret, frame = cap.read()
 
                     # Make detections
-                    image, results = utils.mediapipe_detection(frame, holistic)
+                    image, results = Utils.mediapipe_detection(frame, holistic)
 
                     # Draw landmarks
-                    utils.draw_styled_landmarks(image, results)
+                    Utils.draw_styled_landmarks(image, results)
 
                     # NEW Apply wait logic
                     if frame_num == 0:
@@ -113,7 +113,7 @@ class FolderFiller(tk.Frame):
                         cv2.imshow('OpenCV Feed', image)
 
                     # NEW Export keypoints
-                    keypoints = utils.extract_keypoints(results)
+                    keypoints = Utils.extract_keypoints(results)
                     npy_path = os.path.join(sequence_path, str(frame_num))
                     np.save(npy_path, keypoints)
 

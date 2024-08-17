@@ -2,7 +2,7 @@ import random
 import cv2
 import mediapipe as mp
 import numpy as np
-
+import os
 
 def mediapipe_detection(image, model):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # Color conversion BGR to RGB
@@ -100,6 +100,78 @@ class TextRedirector:
 
     def flush(self):
         pass
+
+
+def get_action_array_from_file(base_path):
+    file_path = ""
+    try:
+        file_path = os.path.join(base_path, 'selected_folders.txt')
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+        folders = [line.strip() for line in lines]
+        folder_array = np.array(folders)
+        return folder_array
+
+    except FileNotFoundError:
+        print(f"Error: The file '{file_path}' was not found.")
+        return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+
+def open_max_resolution_capture(camera_index=0):
+    # Open the video capture
+    cap = cv2.VideoCapture(camera_index)
+
+    # Check if the camera opened successfully
+    if not cap.isOpened():
+        print(f"Error: Could not open camera with index {camera_index}")
+        return None
+
+    # Retrieve the maximum resolution supported by the camera
+    max_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    max_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+    # Set the maximum resolution
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, max_width)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, max_height)
+
+    # Verify if the resolution was set successfully
+    actual_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    actual_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+    print(f"Camera resolution set to: {actual_width}x{actual_height}")
+
+    return cap
+
+
+def open_16_9_video_capture(camera_index=0):
+    # Open the video capture
+    cap = cv2.VideoCapture(camera_index)
+
+    # Check if the camera opened successfully
+    if not cap.isOpened():
+        print(f"Error: Could not open camera with index {camera_index}")
+        return None
+
+    # Retrieve the maximum height supported by the camera
+    max_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+    # Calculate the corresponding width for a 16:9 aspect ratio
+    width_16_9 = int(max_height * 16 / 9)
+
+    # Set the 16:9 resolution
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, width_16_9)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, max_height)
+
+    # Verify if the resolution was set successfully
+    actual_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    actual_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+    print(f"Camera resolution set to: {actual_width}x{actual_height}")
+
+    return cap
 
 
 if __name__ == "__main__":

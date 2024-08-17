@@ -1,15 +1,17 @@
 import socket
 import threading
 import time
-#import action_detection_refined_Runner as mrunner
+
 
 class Server:
-    def __init__(self):
+    def __init__(self,port=None):
         self.variable = "Initial Value"
         self.clients = []
         self.running = True
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server_socket.bind(('localhost', 65432))
+        if port is None:
+            port = 65431
+        self.server_socket.bind(('localhost', port))
         self.currentWord = ""
         self.HasClients = False
 
