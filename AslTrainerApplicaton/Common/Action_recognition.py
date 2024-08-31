@@ -7,7 +7,12 @@ from keras.models import Sequential
 from keras.layers import LSTM, Dense
 import Common.Utils as Utils
 import os
+import mmap
 
+SHM_NAME = "shm_cam_feed"
+FRAME_WIDTH = 640
+FRAME_HEIGHT = 360
+FRAME_SIZE = FRAME_WIDTH * FRAME_HEIGHT * 3
 
 class ActionRecognition:
     def __init__(self):
@@ -53,16 +58,26 @@ class ActionRecognition:
         sentence = []
         predictions = []
 
-        cap = Utils.open_16_9_video_capture()
-
+        cap = Utils.open_capture_with_resolution(FRAME_WIDTH,FRAME_HEIGHT)  # Utils.open_16_9_video_capture()
+        shm = mmap.mmap(-1, FRAME_SIZE, SHM_NAME)
         with self.mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
             while cap.isOpened():
                 ret, frame = cap.read()
+                frame = cv2.flip(frame, 1)
                 image, results = Utils.mediapipe_detection(frame, holistic)
                 Utils.draw_styled_landmarks(image, results)
                 keypoints = Utils.extract_keypoints(results)
                 sequence.append(keypoints)
                 sequence = sequence[-30:]
+
+                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                # Check frame size
+                if frame_rgb.nbytes != FRAME_SIZE:
+                    print(f"Warning: Frame size mismatch! Expected {FRAME_SIZE}, got {frame_rgb.nbytes}")
+
+                # Write frame to shared memory
+                shm.seek(0)
+                shm.write(frame_rgb.tobytes())
 
                 if len(sequence) == 30:
                     res = self.model.predict(np.expand_dims(sequence, axis=0))[0]

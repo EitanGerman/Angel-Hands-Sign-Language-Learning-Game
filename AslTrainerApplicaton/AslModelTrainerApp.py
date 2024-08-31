@@ -39,7 +39,7 @@ class App:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title("My Application")
+    root.title("ASL Model Trainer")
     root.geometry("800x600")
 
     app = App(root)

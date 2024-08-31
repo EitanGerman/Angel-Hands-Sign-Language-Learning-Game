@@ -67,7 +67,7 @@ class YouTubeCaptureView(tk.Frame):
     def start_capture(self):
         self.log("starting")
         input_text = self.text_entry.get("1.0", tk.END).strip()
-        if input_text is None or input_text is '':
+        if input_text is None or input_text == '':
             self.log("Please enter at least one dataset entry!")
             messagebox.showinfo("Invalid Input", f"Please enter at least one dataset entry!")
             return

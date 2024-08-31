@@ -1,6 +1,6 @@
 from cx_Freeze import setup, Executable
 
-additional_files = ['Models/2024-08-04_19-29(500EP)/*']
+additional_files = ['Models/2024-08-04_19-29(500EP)/']
 
 setup(
     name="ModelServer",
@@ -13,3 +13,7 @@ setup(
         }
     }
 )
+
+
+# run in console like that
+# python setup.py build

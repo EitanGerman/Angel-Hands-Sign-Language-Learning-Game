@@ -120,29 +120,16 @@ def get_action_array_from_file(base_path):
         return None
 
 
-def open_max_resolution_capture(camera_index=0):
+def open_capture_with_resolution(width=640,height=360,camera_index=0):
     # Open the video capture
     cap = cv2.VideoCapture(camera_index)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
     # Check if the camera opened successfully
     if not cap.isOpened():
         print(f"Error: Could not open camera with index {camera_index}")
         return None
-
-    # Retrieve the maximum resolution supported by the camera
-    max_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    max_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-
-    # Set the maximum resolution
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, max_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, max_height)
-
-    # Verify if the resolution was set successfully
-    actual_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    actual_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-
-    print(f"Camera resolution set to: {actual_width}x{actual_height}")
-
     return cap
 
 

@@ -23,7 +23,7 @@ if __name__ == "__main__":
         "--show_video",
         type=bool,
         default=False,
-        help="Flag to show video output (default: True)"
+        help="Flag to show video output (default: False)"
     )
 
     parser.add_argument(
