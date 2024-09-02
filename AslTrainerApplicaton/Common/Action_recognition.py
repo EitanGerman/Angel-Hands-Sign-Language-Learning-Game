@@ -15,6 +15,7 @@ FRAME_WIDTH = 640
 FRAME_HEIGHT = 360
 FRAME_SIZE = FRAME_WIDTH * FRAME_HEIGHT * 3
 
+
 class ActionRecognition:
     def __init__(self):
         # Initialize MediaPipe and Keras model
@@ -88,7 +89,7 @@ class ActionRecognition:
                 sequence = sequence[-30:]
 
                 if len(sequence) == 30:
-                    res = self.model.predict(np.expand_dims(sequence, axis=0))[0]
+                    res = self.model.predict(np.expand_dims(sequence, axis=0),verbose=None)[0]
                     print(self.actions[np.argmax(res)])
                     currentAction = self.actions[np.argmax(res)]
                     if previousAction != currentAction:
