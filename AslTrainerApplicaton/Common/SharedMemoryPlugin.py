@@ -34,13 +34,17 @@ class CameraFeed:
             ret, frame = self.cap.read()
             if not ret:
                 print("Failed to capture frame.")
+                self.cleanup()
                 break
 
             frame = cv2.flip(frame, 1)
-            text = "Sign Language Feed"
-            cv2.putText(frame, text, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
+            #text = "Sign Language Feed"
+            #cv2.putText(frame, text, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
 
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+            text = "Shared Memory Live Feed"
+            cv2.putText(frame, text, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
 
             # Check frame size
             if frame_rgb.nbytes != self.FRAME_SIZE:
@@ -65,11 +69,11 @@ class CameraFeed:
         """Releases resources."""
         self.cap.release()
         self.shm.close()
-        cv2.destroyAllWindows()
+        cv2.destroyWindow('Camera Feed')
 
 if __name__ == "__main__":
     try:
-        cam_feed = CameraFeed()
+        cam_feed = CameraFeed(True)
         cam_feed.start()
         cam_feed.thread.join()  # Wait for the camera thread to finish
     except RuntimeError as e:

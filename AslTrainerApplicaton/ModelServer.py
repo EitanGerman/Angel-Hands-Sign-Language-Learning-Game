@@ -9,6 +9,7 @@ def main(model_path,show_video=False,port=None,width=640,height=360):
     ac.load_model(model_path)
     ac.run_model(show_video,port,width,height)
     shmp.stop()
+    exit(0)
 
 
 if __name__ == "__main__":

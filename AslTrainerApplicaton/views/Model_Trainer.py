@@ -1,4 +1,5 @@
 import tkinter as tk
+from pathlib import Path
 from tkinter import messagebox
 from datetime import datetime
 import os
@@ -9,6 +10,8 @@ from keras.utils import to_categorical
 from keras.callbacks import TensorBoard, Callback
 import threading
 from Common import Action_recognition
+import json
+import shutil
 
 # Define constants
 DATA_PATH = 'MP_Data'
@@ -123,7 +126,11 @@ class ModelTrainer(tk.Frame):
         sequences, labels = [], []
 
         for action in selected_folders:
-            for sequence in np.array(os.listdir(os.path.join(DATA_PATH, action))).astype(int):
+            numeric_dirs = [d for d in os.listdir(os.path.join(DATA_PATH, action))
+                            if os.path.isdir(os.path.join(DATA_PATH, action, d))
+                            and d.isdigit()]
+            numeric_dirs_int = np.array(numeric_dirs).astype(int)
+            for sequence in numeric_dirs_int:
                 window = []
                 for frame_num in range(sequence_length):
                     res = np.load(os.path.join(DATA_PATH, action, str(sequence), "{}.npy".format(frame_num)))
@@ -151,15 +158,70 @@ class ModelTrainer(tk.Frame):
         yhat = np.argmax(res, axis=1).tolist()
         self.log(f"Accuracy: {accuracy_score(ytrue, yhat)}")
 
-        self.log("Saving the model...")
-        save_dir = os.path.join('Models', datetime.now().strftime('%Y-%m-%d_%H-%M'))
-        os.makedirs(save_dir, exist_ok=True)
-        model.save(os.path.join(save_dir, 'actions.keras'))
-        with open(os.path.join(save_dir, 'selected_folders.txt'), 'w') as f:
-            for folder in selected_folders:
-                f.write(folder + '\n')
-
+        # self.log("Saving the model...")
+        # save_dir = os.path.join('Models', datetime.now().strftime('%Y-%m-%d_%H-%M'))
+        # os.makedirs(save_dir, exist_ok=True)
+        # model.save(os.path.join(save_dir, 'actions.keras'))
+        # with open(os.path.join(save_dir, 'selected_folders.txt'), 'w') as f:
+        #     for folder in selected_folders:
+        #         f.write(folder + '\n')
+        self.save_model_and_metadata(model, selected_folders)
         self.log("Model saved successfully.")
 
         self.train_button.config(state=tk.NORMAL)
 
+    def save_model_and_metadata(self, model, selected_folders):
+        self.log("Saving the model...")
+        save_dir = os.path.join('Models', datetime.now().strftime('%Y-%m-%d_%H-%M'))
+        os.makedirs(save_dir, exist_ok=True)
+
+        # Save the model
+        model.save(os.path.join(save_dir, 'actions.keras'))
+
+        # Save the list of selected folders
+        with open(os.path.join(save_dir, 'selected_folders.txt'), 'w') as f:
+            for folder in selected_folders:
+                f.write(folder + '\n')
+
+        # Create Resources directory
+        resources_dir = os.path.join(save_dir, 'Resources')
+        os.makedirs(resources_dir, exist_ok=True)
+
+        model_data = []
+        expected_words = set()  # Keep track of all expected words
+
+        for folder in selected_folders:
+            metadata_folder = os.path.join('MP_Data\\'+folder, 'MetaData')
+            recordings_folder = os.path.join(metadata_folder, 'Recordings')
+            sign_data_folder = os.path.join(metadata_folder, 'SignData')
+
+            # Extract folder name for Resources
+            folder_name = os.path.basename(folder)
+            resources_folder = os.path.join(resources_dir, folder_name)
+            os.makedirs(resources_folder, exist_ok=True)
+
+            # Copy Recordings folder
+            if os.path.exists(recordings_folder):
+                shutil.copytree(recordings_folder, os.path.join(resources_folder, 'Recordings'), dirs_exist_ok=True)
+
+            expected_words.add(folder_name)
+            # Combine JSON files
+            for json_file in Path(sign_data_folder).glob('*.json'):
+                with open(json_file, 'r') as f:
+                    data = json.load(f)
+                    data['recordings_path'] = os.path.join('Resources', folder_name, 'Recordings')
+                    model_data.append(data)
+
+        # Add placeholder entries for missing JSON files
+        for word in expected_words:
+            if not any(entry['word'] == word for entry in model_data):
+                model_data.append({
+                    "word": word,
+                    "urls": [],
+                    "recordings_path": ''#os.path.join('Resources', word, 'Recordings')
+                })
+        # Save combined JSON data
+        with open(os.path.join(save_dir, 'ModelData.json'), 'w') as f:
+            json.dump(model_data, f, indent=4)
+
+        self.log("Model and metadata saved successfully.")

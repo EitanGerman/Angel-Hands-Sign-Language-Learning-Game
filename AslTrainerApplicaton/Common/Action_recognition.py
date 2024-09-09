@@ -121,8 +121,12 @@ class ActionRecognition:
                         break
 
         # Cleanup
+
+        if cv2.getWindowProperty('OpenCV Feed', cv2.WND_PROP_VISIBLE) >= 1:
+            cv2.destroyWindow('OpenCV Feed')
+        else:
+            cv2.destroyAllWindows()
         shm.close()
-        cv2.destroyAllWindows()
         self.srvr.stop()
 
     def run_model_old(self, show_video=True,port=None):

@@ -1,3 +1,4 @@
+import json
 import cv2
 import numpy as np
 import os
@@ -30,7 +31,7 @@ def download_youtube_video(url, output_path='temp'):
         print(f"Error downloading video: {e}")
 
 
-def process_dataset_entry(entry, video_path, sequence_count,start_sequence, folder_path,preview=False):
+def process_dataset_entry(entry, video_path, sequence_count, start_sequence, folder_path, recordings_folder, preview=False):
     # Open video capture
     cap = cv2.VideoCapture(video_path)
     fps = cap.get(cv2.CAP_PROP_FPS)
@@ -39,8 +40,29 @@ def process_dataset_entry(entry, video_path, sequence_count,start_sequence, fold
     end_frame = int(entry['end_time'] * fps)
     total_frames = end_frame - start_frame
 
+    snippet_path = os.path.join(recordings_folder, f"{entry['org_text']}_{start_sequence}.mp4")
+
+    # Check if the snippet already exists
+    if not os.path.exists(snippet_path):
+        print(f"Recording new snippet: {snippet_path}")
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        out = cv2.VideoWriter(snippet_path, fourcc, fps, (int(cap.get(3)), int(cap.get(4))))
+
+        # Save the unique snippet video from start to end times
+        for frame_num in range(start_frame, end_frame):
+            cap.set(cv2.CAP_PROP_POS_FRAMES, frame_num)
+            ret, frame = cap.read()
+            if not ret:
+                print(f"Error reading frame {frame_num}")
+                break
+            out.write(frame)
+        out.release()
+    else:
+        print(f"Snippet {snippet_path} already exists, skipping video recording.")
+
+    # Process the snippet and record npy files (keypoints) for each sequence
     with mp.solutions.holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
-        for sequence in range(start_sequence,start_sequence+sequence_count):
+        for sequence in range(start_sequence, start_sequence + sequence_count):
             sequence_path = os.path.join(folder_path, str(sequence))
             os.makedirs(sequence_path, exist_ok=True)
 
@@ -53,6 +75,8 @@ def process_dataset_entry(entry, video_path, sequence_count,start_sequence, fold
                     print(f"Error reading frame {current_frame}")
                     break
 
+
+                # Process frame for keypoints
                 image, results = Utils.mediapipe_detection(frame, holistic)
                 keypoints = Utils.extract_keypoints(results)
                 npy_path = os.path.join(sequence_path, str(frame_num))
@@ -76,10 +100,16 @@ def process_dataset_entry(entry, video_path, sequence_count,start_sequence, fold
 def process_dataset_entry_list(dataset_entries, action, preview=False):
     folder_path = os.path.join(DATA_PATH, action)
     os.makedirs(folder_path, exist_ok=True)
+    metadataFolder = os.path.join(folder_path, "MetaData")
+    signFolder = os.path.join(metadataFolder, "SignData")
+    recordingsFolder = os.path.join(metadataFolder, "Recordings")
+    os.makedirs(signFolder, exist_ok=True)
+    os.makedirs(recordingsFolder, exist_ok=True)
     print(folder_path)
 
     video_paths = {}
     valid_entries = []
+    used_urls = []
 
     # First, attempt to download all videos
     for entry in dataset_entries:
@@ -89,6 +119,7 @@ def process_dataset_entry_list(dataset_entries, action, preview=False):
             if video_path:
                 video_paths[url] = video_path
                 valid_entries.append(entry)
+                used_urls.append(url)
             else:
                 print(f"Failed to download video for URL: {url}. Skipping this entry.")
 
@@ -98,6 +129,17 @@ def process_dataset_entry_list(dataset_entries, action, preview=False):
         print("No valid videos were downloaded. Exiting.")
         return
 
+    # Store metadata for the sign
+    metadata_file_path = os.path.join(signFolder, f"{action}.json")
+    metadata = {
+        "word": action,
+        "urls": used_urls,
+        "recordings_path": f"Resources/{action}/Recordings"
+    }
+    with open(metadata_file_path, 'w') as metadata_file:
+        json.dump(metadata, metadata_file, indent=4)
+
+    # Determine how many sequences per valid entry
     sequences_per_entry = NO_SEQUENCES // num_valid_entries
     extra_sequences = NO_SEQUENCES % num_valid_entries
 
@@ -109,7 +151,9 @@ def process_dataset_entry_list(dataset_entries, action, preview=False):
 
         # Allocate sequences
         sequence_count = sequences_per_entry + (1 if idx < extra_sequences else 0)
-        process_dataset_entry(entry, video_path, sequence_count, cnt, folder_path, preview)
+
+        # Process entry and capture both keypoints and video snippets
+        process_dataset_entry(entry, video_path, sequence_count, cnt, folder_path, recordingsFolder, preview)
         cnt += sequence_count
 
     # Clean up downloaded videos
@@ -125,7 +169,7 @@ def process_dataset_entry_list(dataset_entries, action, preview=False):
 def copy_and_replace(base_directory):
     base_path = Path(base_directory)
 
-    subdirs = [d for d in base_path.iterdir() if d.is_dir()]
+    subdirs = [d for d in base_path.iterdir() if d.is_dir() and d.name[0].isdigit()]
 
     less_than_SEQUENCE_LENGTH = [d for d in subdirs if sum(1 for _ in d.iterdir() if _.is_file()) < SEQUENCE_LENGTH]
     at_least_SEQUENCE_LENGTH = [d for d in subdirs if sum(1 for _ in d.iterdir() if _.is_file()) >= SEQUENCE_LENGTH]
@@ -162,36 +206,6 @@ def check_folders(srcDir):
             subdirectory = entry.path
             num_files = sum([1 for _ in os.scandir(subdirectory) if _.is_file()])
             print(f"{entry.name}: {num_files} files")
-
-# def process_dataset_entry_list(dataset_entries, action, preview=False):
-#     folder_path = os.path.join(DATA_PATH, action)
-#     os.makedirs(folder_path, exist_ok=True)
-#     print(folder_path)
-#     # Determine how many sequences per entry
-#     num_entries = len(dataset_entries)
-#     sequences_per_entry = NO_SEQUENCES // num_entries
-#     extra_sequences = NO_SEQUENCES % num_entries
-#
-#     video_paths = {}
-#
-#     cnt = 1
-#
-#     for idx, entry in enumerate(dataset_entries):
-#         # Download each video only once per unique label
-#         url = entry['url']
-#         if url not in video_paths:
-#             video_paths[url] = download_youtube_video(url)
-#
-#         video_path = video_paths[url]
-#
-#         # Allocate sequences
-#         sequence_count = sequences_per_entry + (1 if idx < extra_sequences else 0)
-#         process_dataset_entry(entry, video_path, sequence_count, cnt, folder_path, preview)
-#         cnt += sequence_count
-#
-#     # Clean up downloaded videos
-#     for path in video_paths.values():
-#         os.remove(path)
 
 
 if __name__ == "__main__":

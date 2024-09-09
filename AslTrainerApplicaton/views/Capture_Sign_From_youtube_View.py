@@ -52,11 +52,14 @@ class YouTubeCaptureView(tk.Frame):
 
     def on_sign_selected(self, event):
         selected_sign = self.sign_combobox.get()
+        self.name_entry.delete(0, tk.END)  # Clear current text
+        self.name_entry.insert(0,selected_sign)
         if selected_sign in self.sign_data:
             sign_list = self.sign_data[selected_sign]
             self.text_entry.delete("1.0", tk.END)
             self.text_entry.insert(tk.END, json.dumps(sign_list, indent=4))
             self.log(f"Selected sign '{selected_sign}' with {len(sign_list)} entries.")
+
 
     def log(self, message):
         self.log_text.configure(state='normal')

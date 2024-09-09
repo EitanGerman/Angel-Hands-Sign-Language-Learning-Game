@@ -4,6 +4,7 @@ from tkinter import ttk, filedialog, messagebox
 import cv2
 from PIL import Image, ImageTk
 from Common.Action_recognition import ActionRecognition
+from Common.SharedMemoryPlugin import CameraFeed
 
 
 class ModelPreview:
@@ -94,9 +95,12 @@ class ModelPreview:
             self.start_model()
 
     def start_model(self):
+        self.shmp = CameraFeed(True, 640, 360)
+        self.shmp.start()
         self.action_recognition.run_model()
         self.model_running = True
         self.model_button.config(text="Stop Model")
+        self.shmp.stop()
 
     def stop_model(self):
         self.model_running = False
