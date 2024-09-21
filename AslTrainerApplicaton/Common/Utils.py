@@ -66,6 +66,19 @@ def prob_viz(res, actions, input_frame, colors=None):
                     cv2.LINE_AA)
     return output_frame
 
+def prob_viz_sorted(res, actions, input_frame, colors=None):
+    if colors is None:
+        colors = [(0, 0, 255)]
+    # Zip probabilities and actions together, sort by probability in descending order
+    sorted_res_actions = sorted(zip(res, actions), key=lambda x: x[0], reverse=True)
+    output_frame = input_frame.copy()
+    for num, (prob, action) in enumerate(sorted_res_actions):
+        cv2.rectangle(output_frame, (0, 60 + num * 40), (int(prob * 100), 90 + num * 40),
+                      colors[num] if colors[num] is not None else (0, 0, 255), -1)
+        cv2.putText(output_frame, action, (0, 85 + num * 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2,
+                    cv2.LINE_AA)
+    return output_frame
+
 
 def generate_random_colors(n):
     colors = []

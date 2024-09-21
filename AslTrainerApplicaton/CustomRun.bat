@@ -1,1 +1,1 @@
-C:\Users\Eitan\PycharmProjects\testModel\build\exe.win-amd64-3.10\ModelServer.exe "C:\\Users\\Eitan\\PycharmProjects\\testModel\\Models\\2024-08-04_19-29(500EP)" --show_video 
+build\exe.win-amd64-3.10\ModelServer.exe "Models\\2024-08-04_19-29(500EP)" --show_video --Threshold 0.6 --Sensitivity 8

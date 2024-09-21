@@ -1,0 +1,10 @@
+{
+    "word": "Hello",
+    "urls": [
+        "www.youtube.com/watch?v=FVjpLa8GqeM",
+        "https://www.youtube.com/watch?v=QB44Vddoi-w",
+        "https://www.youtube.com/watch?v=7iuyJ84wvds",
+        "https://www.youtube.com/watch?v=FbBdHdmt5oI"
+    ],
+    "recordings_path": "Resources/Hello/Recordings"
+}

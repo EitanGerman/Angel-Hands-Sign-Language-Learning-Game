@@ -7,8 +7,10 @@ class YouTubeCaptureView(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
         self.pack(fill=tk.BOTH, expand=True)
+        self.preview_var = tk.BooleanVar()
         self.sign_data = self.load_grouped_data()
         self.create_widgets()
+
 
     def create_widgets(self):
         # Create main frame
@@ -44,7 +46,7 @@ class YouTubeCaptureView(tk.Frame):
         self.sign_combobox.pack(fill=tk.X, pady=5)
         self.sign_combobox.bind("<<ComboboxSelected>>", self.on_sign_selected)
 
-        self.preview = tk.Checkbutton(control_frame, text="Preview Capture")
+        self.preview = tk.Checkbutton(control_frame, text="Preview Capture",variable=self.preview_var)
         self.preview.pack(fill=tk.X, pady=5)
         # Create start button
         start_button = tk.Button(control_frame, text="Start", command=self.start_capture)
@@ -87,7 +89,7 @@ class YouTubeCaptureView(tk.Frame):
                 action = self.name_entry.get().strip()
                 if action:
                     self.log(f"Processing entries with action: {action}")
-                    capYT.process_dataset_entry_list(dataset_entries, action,True)
+                    capYT.process_dataset_entry_list(dataset_entries, action,self.preview_var.get())
                     self.log(f"Done Processing action: {action}")
                 else:
                     self.log("Please enter a sign name to proceed.")
@@ -99,6 +101,7 @@ class YouTubeCaptureView(tk.Frame):
         except ValueError as ve:
             self.log(str(ve))
 
+
     @staticmethod
     def load_grouped_data():
         try:
@@ -107,4 +110,3 @@ class YouTubeCaptureView(tk.Frame):
         except Exception as e:
             messagebox.showinfo("Error", f"Error loading grouped data: {e}")
             return {}
-

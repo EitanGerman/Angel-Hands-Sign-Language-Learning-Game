@@ -26,7 +26,7 @@ class ActionRecognition:
         self.model = None
 
         self.colors = [(245, 117, 16), (117, 245, 16), (16, 117, 245), (150, 23, 245), (150, 23, 0)]
-        self.threshold = 0.5
+        self.threshold = 0.7
 
     def load_model(self, model_path):
         self.actions = Utils.get_action_array_from_file(model_path)
@@ -52,7 +52,8 @@ class ActionRecognition:
         self.srvr = server.Server(port)
         self.srvr.start()
 
-    def run_model(self, show_video=True, port=None, width=FRAME_WIDTH, height=FRAME_HEIGHT):
+    def run_model(self, show_video=True, port=None, width=FRAME_WIDTH, height=FRAME_HEIGHT,threshold=0.7,sensitivity=10):
+        self.threshold = threshold
         currentAction = ""
         previousAction = ""
         self.start_server(port)
@@ -94,22 +95,22 @@ class ActionRecognition:
                     currentAction = self.actions[np.argmax(res)]
                     if previousAction != currentAction:
                         previousAction = currentAction
-                        self.srvr.broadcast_variable(previousAction)
+                        #self.srvr.broadcast_variable(previousAction)
                     predictions.append(np.argmax(res))
 
-                    if show_video:
-                        if np.unique(predictions[-10:])[0] == np.argmax(res):
-                            if res[np.argmax(res)] > self.threshold:
-                                if len(sentence) > 0:
-                                    if self.actions[np.argmax(res)] != sentence[-1]:
-                                        sentence.append(self.actions[np.argmax(res)])
-                                else:
+                    if np.unique(predictions[-sensitivity:])[0] == np.argmax(res):
+                        if res[np.argmax(res)] > self.threshold:
+                            if len(sentence) > 0:
+                                if self.actions[np.argmax(res)] != sentence[-1]:
                                     sentence.append(self.actions[np.argmax(res)])
+                            else:
+                                sentence.append(self.actions[np.argmax(res)])
+                            self.srvr.broadcast_variable(self.actions[np.argmax(res)])
 
-                        if len(sentence) > 5:
-                            sentence = sentence[-5:]
-
-                        image = Utils.prob_viz(res, self.actions, image, self.colors)
+                    if len(sentence) > 5:
+                        sentence = sentence[-5:]
+                    if show_video:
+                        image = Utils.prob_viz_sorted(res, self.actions, image, self.colors)
 
                 if show_video:
                     cv2.rectangle(image, (0, 0), (640, 40), (245, 117, 16), -1)
