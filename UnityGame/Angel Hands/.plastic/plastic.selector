@@ -1,0 +1,4 @@
+repository "Angel Hands@repo_test@cloud"
+  path "/"
+    br "/main"
+    co "/main"

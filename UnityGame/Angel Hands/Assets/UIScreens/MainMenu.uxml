@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIScreens/MainMenuButton.uss?fileID=7433441132597879392&amp;guid=29f29bd87443fea4d9638ed792fd4b2e&amp;type=3#MainMenuButton" />
+    <ui:VisualElement name="Header" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Resources/Images/AngelHands.png?fileID=2800000&amp;guid=34ff8e03d2db2c74a966629ab1ec0dd7&amp;type=3#AngelHands&apos;); height: 40%; align-items: auto; align-self: auto; justify-content: center; -unity-background-scale-mode: scale-to-fit; margin-top: 0; -unity-background-image-tint-color: rgb(255, 255, 255); -unity-slice-scale: 0;" />
+    <ui:VisualElement name="MainMenuContainer" style="flex-grow: 1; justify-content: space-around; align-items: center; margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; padding-top: 0; height: 60%;">
+        <ui:Button text="New Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NewGame" class="button" />
+        <ui:Button text="Statistics" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Statistics" class="button" />
+        <ui:Button text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Settings" class="button" />
+        <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" class="button" />
+    </ui:VisualElement>
+</ui:UXML>

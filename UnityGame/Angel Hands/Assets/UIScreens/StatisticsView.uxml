@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIScreens/MainMenuButton.uss?fileID=7433441132597879392&amp;guid=29f29bd87443fea4d9638ed792fd4b2e&amp;type=3#MainMenuButton" />
+    <ui:VisualElement style="flex-grow: 1; height: 90%;">
+        <ui:DropdownField label="Game Session" index="-1" choices="System.Collections.Generic.List`1[System.String]" />
+        <ui:ListView focusable="true" name="GameStatisticList" />
+    </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1; height: 10%;">
+        <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" class="button" style="align-self: flex-start;" />
+    </ui:VisualElement>
+</ui:UXML>

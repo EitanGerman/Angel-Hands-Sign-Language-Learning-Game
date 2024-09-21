@@ -1,0 +1,1002 @@
+[
+  {
+    "WordResponses": [
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "MOM",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "ILoveYou",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hi",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hello",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "DAD",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "MOM",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hello",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "5659f510-d69b-4b16-87fc-dfce6e256687",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-18T20:00:57.8447444+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "ILoveYou",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "ILoveYou",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Thanks",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hello",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hi",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "MOM",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hello",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "MOM",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Thanks",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "403cc0bd-7256-43a5-b9af-ccd5f0bbad99",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-18T20:03:54.514328+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "MOM",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Peace",
+        "ResponseTime": 1.0,
+        "Skipped": false
+      },
+      {
+        "Word": "MOM",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "DAD",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "ILoveYou",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Thanks",
+        "ResponseTime": 0.0,
+        "Skipped": false
+      },
+      {
+        "Word": "MOM",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "6cebbdf2-d11a-4911-beec-83f16f3a0490",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-18T20:06:01.7401889+03:00",
+    "maxScore": 1000,
+    "score": 200,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "ILoveYou",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "DAD",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "ILoveYou",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "MOM",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hello",
+        "ResponseTime": 2.0,
+        "Skipped": false
+      },
+      {
+        "Word": "Peace",
+        "ResponseTime": 2.0,
+        "Skipped": false
+      },
+      {
+        "Word": "Hello",
+        "ResponseTime": 1.0,
+        "Skipped": false
+      },
+      {
+        "Word": "MOM",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "DAD",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Peace",
+        "ResponseTime": 12.0,
+        "Skipped": false
+      }
+    ],
+    "SessionId": "c60d8fa2-e825-4659-ad49-3f6d9bc4a80d",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-18T20:12:51.7390998+03:00",
+    "maxScore": 1000,
+    "score": 375,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "MOM",
+        "ResponseTime": 9.0,
+        "Skipped": false
+      },
+      {
+        "Word": "Happy",
+        "ResponseTime": 15.0,
+        "Skipped": false
+      },
+      {
+        "Word": "Brother",
+        "ResponseTime": 1.0,
+        "Skipped": false
+      },
+      {
+        "Word": "Thank you",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Happy",
+        "ResponseTime": 13.0,
+        "Skipped": false
+      },
+      {
+        "Word": "Water",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hi",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Peace",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Later",
+        "ResponseTime": 5.0,
+        "Skipped": false
+      },
+      {
+        "Word": "DAD",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "f2cdaf09-088f-4080-b765-14467bdca374",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-19T19:02:32.9047458+03:00",
+    "maxScore": 1000,
+    "score": 400,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "Happy",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Peace",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Home",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Tomorrow",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Home",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Thanks",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Peace",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Help",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "telephone",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Home",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "8f30e730-a074-4955-8882-fea917a599ce",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-19T19:14:28.9620503+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "Remember",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "b33cc15c-fceb-45cc-9033-91563a449dad",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-19T19:16:09.6011012+03:00",
+    "maxScore": 1000,
+    "score": 900,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "MOM",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hi",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "telephone",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Sister",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Help",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Coffee",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "DAD",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Remember",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "telephone",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hi",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "d7d3e100-6369-41a5-b573-0289e685105e",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-19T21:21:43.3863184+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "Home",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hello",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Remember",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Brother",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hi",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Thank you",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Help",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "telephone",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Thank you",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Remember",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "71b758f0-6e3f-4ae6-9046-48fd63642c97",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-19T21:25:18.9557348+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "Later",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "MOM",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "From",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Later",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Home",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Later",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "From",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Later",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Thank you",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Happy",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "dde94d4e-beca-4a54-8755-76a124898def",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-19T21:29:17.5097777+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "Hi",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Water",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Later",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Coffee",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hi",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Thank you",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Happy",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Coffee",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "9bc41fe0-0ac6-4a62-b7c2-db9a962b6fb6",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-20T11:24:53.8179426+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "Remember",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "telephone",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hello",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Thank you",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Happy",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Brother",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Water",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Brother",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Sister",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "545033fe-575c-4692-8c84-7d6f9db504f8",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-20T11:25:02.4404101+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "Remember",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Sister",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Happy",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "DAD",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Home",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "telephone",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Brother",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hi",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "telephone",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "4e246129-eeaf-49e8-931a-a2288d6adfc7",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-20T13:10:52.9146444+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "telephone",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Water",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hello",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "From",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Sister",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "MOM",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Tomorrow",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "telephone",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "From",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "08bedd35-4948-4a87-a299-e3b52f28dff4",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-20T13:13:21.3083795+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "telephone",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Remember",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Later",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Home",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hi",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Tomorrow",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hello",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Coffee",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "telephone",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "a4eabe54-5aa5-4806-9f68-5a4617130169",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-20T13:20:57.8186254+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "Water",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "From",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Tomorrow",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Water",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "DAD",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Home",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Brother",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Sister",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Later",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "386c34e6-8fb3-46b7-b6c3-9480ab56b1eb",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-20T19:09:45.9641304+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "Brother",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "telephone",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Sister",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "From",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Water",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hi",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Remember",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Brother",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Home",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Help",
+        "ResponseTime": 5.0,
+        "Skipped": false
+      }
+    ],
+    "SessionId": "92adbbca-a22d-4906-96bb-217d4925968f",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-20T19:13:04.8794875+03:00",
+    "maxScore": 1000,
+    "score": 0,
+    "NumberOfWordsInGame": 10
+  },
+  {
+    "WordResponses": [
+      {
+        "Word": "Remember",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hello",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Hi",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "me",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      },
+      {
+        "Word": "Sister",
+        "ResponseTime": 20.0,
+        "Skipped": true
+      }
+    ],
+    "SessionId": "3efbe7eb-3e26-44c3-8d03-e9440e8445d9",
+    "GameMode": "SignRush",
+    "SessionDate": "2024-09-21T12:34:11.5102324+03:00",
+    "maxScore": 1000,
+    "score": 500,
+    "NumberOfWordsInGame": 10
+  }
+]

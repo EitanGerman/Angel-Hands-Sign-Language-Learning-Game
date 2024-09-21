@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIScreens/MainMenuButton.uss?fileID=7433441132597879392&amp;guid=29f29bd87443fea4d9638ed792fd4b2e&amp;type=3#MainMenuButton" />
+    <ui:VisualElement style="flex-grow: 1; margin-top: 5%; margin-right: 5%; margin-bottom: 2%; margin-left: 5%;">
+        <ui:VisualElement style="flex-grow: 1; width: 360px; height: 5%; background-color: rgba(255, 255, 255, 0); -unity-background-scale-mode: stretch-to-fill;">
+            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="userLabel" focusable="true" style="width: 352px; -unity-text-align: middle-center; height: 92px; font-size: 50px; -unity-font-style: bold; display: none; white-space: normal; text-overflow: clip; background-color: rgba(255, 255, 255, 0); -unity-font: url(&quot;project://database/Assets/Libs/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Oswald-Bold.ttf?fileID=12800000&amp;guid=c9f6d0e7bc8541498c9a4799ba184ede&amp;type=3#Oswald-Bold&quot;); -unity-background-scale-mode: scale-to-fit; background-image: url(&quot;project://database/Assets/Puzzle%20stage%20&amp;%20settings%20GUI%20Pack/Image_blue/goods.png?fileID=2800000&amp;guid=653092db9e2c4d046980acb06734105b&amp;type=3#goods&quot;); -unity-text-outline-color: rgba(255, 255, 255, 0); text-shadow: 2px 3px 33px rgba(0, 0, 0, 0); align-items: auto; justify-content: flex-start; align-self: auto; opacity: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Header" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Resources/Images/AngelHands.png?fileID=2800000&amp;guid=34ff8e03d2db2c74a966629ab1ec0dd7&amp;type=3#AngelHands&quot;); height: 35%; align-items: auto; align-self: auto; justify-content: flex-end; -unity-background-scale-mode: scale-to-fit; margin-top: 0; -unity-background-image-tint-color: rgb(255, 255, 255); -unity-slice-scale: 0; -unity-text-align: upper-center; font-size: 40px;" />
+        <ui:VisualElement name="Container" style="flex-grow: 1; justify-content: space-around; align-items: center; margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; padding-top: 0; height: 55%; opacity: 1; flex-basis: auto;">
+            <ui:Button text="New Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NewGame" class="button" />
+            <ui:Button text="Statistics" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Statistics" class="button" />
+            <ui:Button text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Settings" class="button" style="display: none;" />
+            <ui:Button text="Login" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Login" class="button" />
+            <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" class="button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

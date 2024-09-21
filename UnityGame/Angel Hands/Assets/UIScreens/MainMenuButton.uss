@@ -1,0 +1,41 @@
+.button {
+    width: 35%;
+    height: 17%;
+    margin-top: 0;
+    margin-bottom: 0;
+    -unity-font-style: bold;
+    -unity-background-image-tint-color: rgba(253, 253, 253, 0.9);
+    -unity-background-scale-mode: stretch-to-fill;
+    background-color: rgba(255, 255, 255, 0);
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    cursor: initial;
+    -unity-text-align: middle-center;
+    margin-right: 0;
+    margin-left: 0;
+    font-size: 500%;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    background-image: url("project://database/Assets/Puzzle%20stage%20&%20settings%20GUI%20Pack/Image_purple/Button/Blank%20White%20Wide3.png?fileID=2800000&guid=3d5206261acb34147a360916622368d7&type=3#Blank White Wide3");
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.button:hover {
+    background-color: rgba(255, 255, 255, 0);
+    -unity-background-image-tint-color: rgba(236, 216, 204, 0.94);
+    background-image: url("project://database/Assets/Puzzle%20stage%20&%20settings%20GUI%20Pack/Image_purple/Button/Blank%20White%20Wide3.png?fileID=2800000&guid=3d5206261acb34147a360916622368d7&type=3#Blank White Wide3");
+}
+
+.button:active {
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url("project://database/Assets/Puzzle%20stage%20&%20settings%20GUI%20Pack/Image_purple/Button/Blank%20White%20Wide3.png?fileID=2800000&guid=3d5206261acb34147a360916622368d7&type=3#Blank White Wide3");
+    -unity-background-image-tint-color: rgb(242, 218, 204);
+}
